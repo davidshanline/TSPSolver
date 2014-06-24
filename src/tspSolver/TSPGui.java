@@ -28,6 +28,7 @@ public class TSPGui extends JFrame {
 	private JFileChooser fc;
 	private BruteForceTSPSolver bfSolver = new BruteForceTSPSolver();
 	private NearestNeighborTSPSolver gSolver = new NearestNeighborTSPSolver();
+	//private DynamicProgrammingSolver dpSolver = new DynamicProgrammingSolver();
 	private String selectedAlgo = "";
 	private JComboBox jcbSolverSelect;
 	
@@ -74,7 +75,7 @@ public class TSPGui extends JFrame {
 				selectedAlgo = (String) jcbSolverSelect.getSelectedItem();
 			}
 		});
-		jcbSolverSelect.setModel(new DefaultComboBoxModel(new String[] {"Please Select an Algorithm to Use", "Brute Force Algorithm", "Greedy Algorithm (Nearest Neighbor)"}));
+		jcbSolverSelect.setModel(new DefaultComboBoxModel(new String[] {"Please Select an Algorithm to Use", "Brute Force Algorithm", "Greedy Algorithm (Nearest Neighbor)", "Dynamic Programming Solver"}));
 		panel.add(jcbSolverSelect);
 		
 		JPanel panel_1 = new JPanel();
@@ -105,6 +106,9 @@ public class TSPGui extends JFrame {
 						else if (selectedAlgo.startsWith("Greedy")) {
 			                fileContents = gSolver.parseNewFile(tspFile);
 						}
+						//else if (selectedAlgo.startsWigh("Dynamic")) {
+							//fileContents = dpSolver.parseNewFile(tspFile);
+						//}
           
 		                jtaLog.append(fileContents);
 		            } else if (returnVal == JFileChooser.CANCEL_OPTION) {
@@ -142,6 +146,14 @@ public class TSPGui extends JFrame {
 							e1.printStackTrace();
 						}
 					}
+					//else if (selectedAlgo.startsWith("Dynamic")) {
+						//jtaLog.append(dpSolver.solve());
+						//try {
+							//jtaLog.append(dpSolver.sendFinalDataForWrite(tspFile));
+						//} catch (IOException e1) {
+							//e1.printStackTrace();
+						//}
+					//}
 					else {
 						jtaLog.append("Please choose an algorithm from the drop down box.");
 					}
